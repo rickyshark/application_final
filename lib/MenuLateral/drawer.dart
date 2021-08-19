@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_final/Pages/asignaturasP.dart';
+import 'package:flutter_application_final/Pages/calificaciones.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 

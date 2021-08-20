@@ -19,7 +19,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pagina Principal'),
+        title: Center(child: Text('Pagina Principal')),
         backgroundColor: Colors.amber,
       ),
       drawer: menu_lateral(),

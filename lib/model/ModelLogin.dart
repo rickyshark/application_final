@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 class LoginResponseModel {
   late bool success;
   late bool forceLogin;
@@ -80,6 +81,49 @@ class Data {
     data['token'] = this.token;
     return data;
   }
+}
+
+class traerRecintos{
+
+    List recintos;
+
+  String stateInfoUrl = 'http://cleanions.bestweb.my/api/location/get_state';
+  Future<String> _getStateList() async {
+    await http.post(stateInfoUrl, headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }, body: {
+      "api_key": '25d55ad283aa400af464c76d713c07ad',
+    }).then((response) {
+      var data = json.decode(response.body);
+
+//      print(data);
+      setState(() {
+        statesList = data['state'];
+      });
+    });
+  }
+
+  // Get State information by API
+  List citiesList;
+  String _myCity;
+
+  String cityInfoUrl =
+      'http://cleanions.bestweb.my/api/location/get_city_by_state_id';
+  Future<String> _getCitiesList() async {
+    await http.post(cityInfoUrl, headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }, body: {
+      "api_key": '25d55ad283aa400af464c76d713c07ad',
+      "state_id": _myState,
+    }).then((response) {
+      var data = json.decode(response.body);
+
+      setState(() {
+        citiesList = data['cities'];
+      });
+    });
+  }
+}
 }
 
 class LoginRequestModel {

@@ -56,6 +56,8 @@ class _MyHomePageState extends State<LoginPage> {
     }
   }
 
+  List listItem = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<LoginPage> {
         title: Center(child: (Text("UTESA"))),
         backgroundColor: Colors.amber,
       ),
-      body: Center(
+      body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

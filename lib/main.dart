@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_final/Api/ApiService.dart';
 import 'package:flutter_application_final/Pages/Home.dart';
 import 'package:flutter_application_final/model/ModelLogin.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -28,6 +32,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<LoginPage> {
+  late List dato;
+  String url = "https://apps.ia3x.com/ute_app_utesa/index.php?/App/recintos";
+
+  Future allRecintos() async {
+    var reponse =
+        await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
+    Map<String, dynamic> data =
+        new Map<String, dynamic>.from(json.decode(reponse.body));
+
+    setState(() {
+      dato = data["data"];
+    });
+
+    return "success";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    allRecintos();
+  }
+
   TextEditingController recinto = TextEditingController();
   TextEditingController usuario = TextEditingController();
   TextEditingController clave = TextEditingController();
@@ -56,10 +82,9 @@ class _MyHomePageState extends State<LoginPage> {
     }
   }
 
-  List listItem = [];
-
   @override
   Widget build(BuildContext context) {
+    String? _currentSugars;
     return Scaffold(
       appBar: AppBar(
         title: Center(child: (Text("UTESA"))),
@@ -70,6 +95,22 @@ class _MyHomePageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('$error'),
+            Container(
+              child: DropdownButton(
+                value: _currentSugars,
+                hint: Text("Selecionar recinto"),
+                items: dato
+                    .map(
+                      (list) => DropdownMenuItem(
+                        child: Text(list['txt']),
+                        value: list['id'].toString(),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (val) =>
+                    setState(() => _currentSugars = val as String),
+              ),
+            ),
             TextField(
                 textAlign: TextAlign.justify,
                 controller: recinto,
@@ -124,7 +165,7 @@ class _MyHomePageState extends State<LoginPage> {
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontWeight: FontWeight.bold),
-            )
+            ),
           ],
         ),
       ),

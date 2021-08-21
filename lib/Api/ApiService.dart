@@ -13,7 +13,7 @@ class ApiService {
     if (response.statusCode == 200) {
       return LoginResponseModel.fromJson(jsonDecode(response.body));
     } else {
-      return throw Exception("Error to load");
+      return throw Exception("Error al cargar los datos");
     }
   }
 }

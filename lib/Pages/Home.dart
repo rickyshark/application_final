@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_final/MenuLateral/drawer.dart';
 import '../model/ModelLogin.dart';
@@ -31,6 +33,11 @@ class HomeState extends State<Home> {
             Text(logint.data.token)
           ],
         ),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () => exit(0),
+        tooltip: 'Close app',
+        child: new Icon(Icons.close),
       ),
     );
   }

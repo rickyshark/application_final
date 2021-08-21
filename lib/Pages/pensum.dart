@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class asignaturasPage extends StatefulWidget {
+class pemsunPage extends StatefulWidget {
   @override
-  _asignaturaPageState createState() => _asignaturaPageState();
+  _pemsunPageState createState() => _pemsunPageState();
 }
 
 // ignore: camel_case_types
-class _asignaturaPageState extends State<asignaturasPage> {
+class _pemsunPageState extends State<pemsunPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text("Asignatura"),
+          child: Text("Pensum"),
         ),
       ),
       body: Center(
-        child: Text("Aqui van las asignatura del estudiante"),
+        child: Text("Aqui van el pensum de la carrera"),
       ),
     );
   }

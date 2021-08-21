@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_final/Pages/asignaturasP.dart';
 import 'package:flutter_application_final/Pages/calificaciones.dart';
+import 'package:flutter_application_final/Pages/clases_virtuales.dart';
+import 'package:flutter_application_final/Pages/pensum.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -28,7 +30,11 @@ class menu_lateral extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Pemsun'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => pemsunPage()));
+            },
+            title: Text('Pensum'),
             leading: Icon(
               LineIcons.folderAlt,
               color: Colors.green,
@@ -42,6 +48,10 @@ class menu_lateral extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => asignaturasPage()));
+            },
             title: Text('Asignaturas pendientes'),
             leading: Icon(
               LineIcons.clipboard,
@@ -49,6 +59,12 @@ class menu_lateral extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ClasesvirtualesPage()));
+            },
             title: Text('Clases virtuales'),
             leading: Icon(
               LineIcons.desktop,
@@ -97,6 +113,7 @@ class menu_lateral extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {},
             title: Text('Salir'),
             leading: Icon(
               LineIcons.powerOff,
